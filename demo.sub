@@ -1,5 +1,5 @@
 executable = /usr/local/bin/singularity
-arguments = exec --nv /home/USERNAME/singularity_images/my_image-latest_DATETIME-HASH.simg python train.py  --batch-size=16
+arguments = exec --nv docker_cifa.simg python train.py  --batch=16
 
 error      = cifademo.err
 output     = cifademo.out
