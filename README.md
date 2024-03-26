@@ -4,21 +4,21 @@ code modified from [pytorch/tutorial/blitz/cifa10](https://github.com/pytorch/tu
 
 ## TL;DR (Quickstart)
 1. Copy your code and database to Condor machine (e.g `/home/USERNAME/workspace/SHiTNet`)
-2. Create your docker image on your machine (let's say with the tag `my_image:latest`)
-3. Convert docker image `my_image:latest` to a singularity image:
+2. Create your docker image on your machine (let's say with the tag `docker:cifa`)
+3. Convert docker image `docker:cifa` to a singularity image:
    ```bash
-   docker run --privileged -t --rm -v /var/run/docker.sock:/var/run/docker.sock -v /tmp/singularity_images:/output singularityware/docker2singularity:v2.6 my_image:latest
+   docker run --privileged -t --rm -v /var/run/docker.sock:/var/run/docker.sock -v /tmp/singularity_images:/output singularityware/docker2singularity:v2.6 docker:cifa
    ```
-   Your singularity image will be created at `/tmp/singularity_images/my_image-latest_DATETIME-HASH.simg`
+   Your singularity image will be created at `/tmp/singularity_images/docker-cifa_DATETIME-HASH.simg`
 4. Transfer the singularity image to Condor machine
    ```bash
-   scp /tmp/singularity_images/my_image-latest_DATETIME-HASH.simg condor:/home/USERNAME/singularity_images
+   scp /tmp/singularity_images/docker-cifa_DATETIME-HASH.simg condor:/home/USERNAME/singularity_images
    ```
 5. Login to condor machine and submit the job inside your desired directory. Example job description file:  
    Submit file (my_job.sub):
    ```sub
    executable = /usr/local/bin/singularity
-   arguments = exec --nv /home/USERNAME/singularity_images/my_image-latest_DATETIME-HASH.simg python train.py --batch-size=16 --use-adam
+   arguments = exec --nv /home/USERNAME/singularity_images/docker-cifa_DATETIME-HASH.simg python train.py --batch-size=16 --use-adam
    
    error      = logs/singularity.err
    output     = logs/singularity.out

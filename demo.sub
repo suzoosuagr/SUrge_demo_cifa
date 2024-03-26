@@ -1,4 +1,5 @@
-executable = run_cifademo.sh
+executable = /usr/local/bin/singularity
+arguments = exec --nv /home/USERNAME/singularity_images/my_image-latest_DATETIME-HASH.simg python train.py  --batch-size=16
 
 error      = cifademo.err
 output     = cifademo.out
@@ -6,6 +7,6 @@ log        = cifademo.log
 
 Requirements = TARGET.vm_name == "its-u18-nfs-20191029_gpu"
 
-+request_gpus = 2
++request_gpus = 1
 
 queue
