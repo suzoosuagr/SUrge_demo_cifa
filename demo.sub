@@ -1,0 +1,11 @@
+executable = run_cifademo.sh
+
+error      = cifademo.err
+output     = cifademo.out
+log        = cifademo.log
+
+Requirements = TARGET.vm_name == "its-u18-nfs-20191029_gpu"
+
++request_gpus = 2
+
+queue
