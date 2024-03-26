@@ -1,6 +1,7 @@
 # Dockerfile for pytorch 
 # using pip to install python package
 # using multi-stage docker builds
+# you can find valid img tags at : https://hub.docker.com/r/nvidia/cuda 
 ARG PYTHON_VERSION=3.9.1
 ARG BUILDER_IMG=ubuntu:22.04
 ARG RUNTIME_IMG=nvidia/cuda:12.3.2-runtime-ubuntu22.04
