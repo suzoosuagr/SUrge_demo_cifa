@@ -1,12 +1,12 @@
 # Dockerfile for pytorch 
 # using pip to install python package
 # using multi-stage docker builds
-ARG PYTHON_VERSION=3.6.1
-ARG BUILDER_IMG=ubuntu:18.04
-ARG RUNTIME_IMG=nvidia/cuda:10.2-cudnn8-runtime-ubuntu18.04
+ARG PYTHON_VERSION=3.9.1
+ARG BUILDER_IMG=ubuntu:22.04
+ARG RUNTIME_IMG=nvidia/cuda:12.3.2-runtime-ubuntu22.04
 
 FROM ${BUILDER_IMG} AS build-base
-LABEL maintainer="suzoosuagr" \
+LABEL maintainer="Jiyang Wang" \
       description="Runtime pytorch cuda image"\
       vendor="SYR-SVS-LAB"\
       version="1.0"
@@ -43,7 +43,7 @@ RUN git clone https://github.com/pyenv/pyenv.git /pyenv\
     && pyenv install ${PYTHON_VERSION}\
     && pyenv global ${PYTHON_VERSION}
 
-COPY ./requirements.txt /pyenv
+COPY ./requirements.txt /pyenv/
 RUN pip install --upgrade --no-cache-dir pip
 RUN pip install --upgrade --no-cache-dir -r /pyenv/requirements.txt
 
